@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private String name, id, email, phone, dept, password;
     private Button submit;
 
-    // Regex patterns for validation
+
     private Pattern namePattern = Pattern.compile("^[a-zA-Z ]+$");
     private Pattern emailPattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     private Pattern phonePattern = Pattern.compile("^\\d{11}$");
@@ -42,26 +42,26 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Set up window insets
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize views
+
         nameEditText = findViewById(R.id.name);
         idEditText = findViewById(R.id.sId);
         emailEditText = findViewById(R.id.email);
         phoneEditText = findViewById(R.id.num);
-        passEditText = findViewById(R.id.pass); // Added password EditText
+        passEditText = findViewById(R.id.pass);
         deptSpinner = findViewById(R.id.spinner);
         submit = findViewById(R.id.submit);
         inputLayout = findViewById(R.id.inputLayout);
         outputLayout = findViewById(R.id.outputLayout);
         outputText = findViewById(R.id.outputText);
 
-        // Spinner setup
+
         String[] items = new String[]{"Select Major", "Biology", "Chemistry", "Physics", "Mathematics", "Computer Science", "Engineering", "Psychology", "Economics", "Literature", "Art History"};
         deptSpinner.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, items));
         deptSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Submit button click listener
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 phone = phoneEditText.getText().toString();
                 password = passEditText.getText().toString();
 
-                // Validation checks
+
                 if (name.isEmpty()) {
                     nameEditText.setError("Empty!!");
                     nameEditText.requestFocus();
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     passEditText.setError("Password must be at least 6 characters, include an uppercase letter, a lowercase letter, a digit, and a special character");
                     passEditText.requestFocus();
                 } else {
-                    // If all validations pass, hide input layout and display output
+
                     inputLayout.setVisibility(View.GONE);
                     outputLayout.setVisibility(View.VISIBLE);
                     String s = "Name: " + name + "\nID: " + id + "\nEmail: " + email + "\nMobile Number: " + phone + "\nMajor: " + dept;
